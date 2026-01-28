@@ -156,7 +156,7 @@ export function TalentMindDashboard() {
                   accept=".pdf"
                   ref={fileInputRef}
                 />
-                <div className="flex flex-col items-center justify-center p-8 border-2 border-dashed rounded-lg text-muted-foreground">
+                <div className="flex flex-col items-center justify-center p-8 border-2 border-dashed rounded-lg text-muted-foreground hover:border-primary hover:text-primary transition-colors">
                     <FileUp className="w-10 h-10 mb-2"/>
                     <p className="font-medium">
                         {resumeFileName ? resumeFileName : 'Click or drag to upload file'}
