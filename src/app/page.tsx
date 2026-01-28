@@ -29,10 +29,6 @@ export default function Home() {
 
         <TalentMindDashboard />
       </main>
-
-      <footer className="py-6 text-center text-sm text-muted-foreground bg-transparent">
-        <p>Powered by Firebase and Google AI</p>
-      </footer>
     </div>
   );
 }
