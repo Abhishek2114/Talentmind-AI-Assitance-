@@ -56,18 +56,18 @@ export function AnalysisResults({ result }: AnalysisResultsProps) {
                     <Badge key={skill} variant="destructive">{skill}</Badge>
                   ))
                 ) : (
-                  <p className="text-sm text-green-600">No skill gaps found. Great match!</p>
+                  <p className="text-sm text-accent font-medium">No skill gaps found. Great match!</p>
                 )}
               </div>
             </div>
             <Separator />
             <div>
-              <h3 className="font-semibold text-lg mb-3 flex items-center"><CheckCircle2 className="h-5 w-5 mr-2 text-green-600"/>Matching Skills ({matchingSkills.length})</h3>
+              <h3 className="font-semibold text-lg mb-3 flex items-center"><CheckCircle2 className="h-5 w-5 mr-2 text-accent"/>Matching Skills ({matchingSkills.length})</h3>
               <p className="text-sm text-muted-foreground mb-3">You have these required skills.</p>
               <div className="flex flex-wrap gap-2">
                  {matchingSkills.length > 0 ? (
                     matchingSkills.map((skill) => (
-                        <Badge key={skill} className="bg-green-100 text-green-800 hover:bg-green-200 border-green-200">{skill}</Badge>
+                        <Badge key={skill} variant="outline" className="border-accent/30 bg-accent/10 text-accent">{skill}</Badge>
                     ))
                  ) : (
                     <p className="text-sm text-muted-foreground">No matching skills found from the job requirements.</p>
