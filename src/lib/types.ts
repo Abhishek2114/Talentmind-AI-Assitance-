@@ -8,14 +8,12 @@ export type AnalysisResult = {
   jobInfo: AnalyzeJobDescriptionOutput;
   skillGaps: IdentifySkillGapsOutput;
   feedback: GenerateResumeFeedbackOutput;
+  jobRecommendations: JobRecommendation[];
 };
 
 export type JobRecommendation = {
-  id: number;
   title: string;
   company: string;
   location: string;
-  skills: string[];
-  matchPercentage: number;
   url: string;
 };

@@ -5,7 +5,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Lightbulb, Briefcase, FileText, ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
-import { mockJobRecommendations } from '@/lib/mock-data';
 import Image from 'next/image';
 import { Button } from '../ui/button';
 import { Separator } from '../ui/separator';
@@ -97,29 +96,20 @@ export function AnalysisResults({ result }: AnalysisResultsProps) {
           <CardHeader>
             <CardTitle>Potential Job Matches</CardTitle>
             <CardDescription>
-              Other roles you might be a good fit for based on your profile. (Mock data)
+              Live job postings based on your profile, powered by AI.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {mockJobRecommendations.map((job: JobRecommendation) => (
-              <Card key={job.id} className="hover:shadow-md transition-shadow">
+            {result.jobRecommendations.map((job: JobRecommendation, index) => (
+              <Card key={`${job.url}-${index}`} className="hover:shadow-md transition-shadow">
                 <CardHeader>
                     <div className="flex items-start justify-between">
                          <div>
                             <CardTitle className="text-lg">{job.title}</CardTitle>
                             <CardDescription>{job.company} - {job.location}</CardDescription>
                          </div>
-                         <Badge variant={job.matchPercentage > 80 ? 'default' : 'secondary'} className={job.matchPercentage > 90 ? 'bg-accent text-accent-foreground' : ''}>
-                           {job.matchPercentage}% Match
-                         </Badge>
                     </div>
                 </CardHeader>
-                <CardContent>
-                   <div className="flex flex-wrap gap-2">
-                        {job.skills.slice(0, 5).map(skill => <Badge key={skill} variant="outline">{skill}</Badge>)}
-                        {job.skills.length > 5 && <Badge variant="outline">+{job.skills.length - 5} more</Badge>}
-                   </div>
-                </CardContent>
                 <CardFooter className="justify-end">
                     <Button variant="ghost" asChild>
                         <a href={job.url} target="_blank" rel="noopener noreferrer">View Job <ArrowRight className="ml-2 h-4 w-4" /></a>
