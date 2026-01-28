@@ -8,7 +8,7 @@ export const mockJobRecommendations: JobRecommendation[] = [
     location: 'San Francisco, CA',
     skills: ['React', 'TypeScript', 'Next.js', 'GraphQL', 'Node.js'],
     matchPercentage: 92,
-    url: '#',
+    url: 'https://linkedin.com/jobs/view/12345',
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ export const mockJobRecommendations: JobRecommendation[] = [
     location: 'New York, NY (Remote)',
     skills: ['React', 'Node.js', 'Python', 'Django', 'AWS'],
     matchPercentage: 85,
-    url: '#',
+    url: 'https://linkedin.com/jobs/view/12346',
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ export const mockJobRecommendations: JobRecommendation[] = [
     location: 'Austin, TX',
     skills: ['Python', 'TensorFlow', 'PyTorch', 'GenAI', 'GCP'],
     matchPercentage: 78,
-    url: '#',
+    url: 'https://linkedin.com/jobs/view/12347',
   },
   {
     id: 4,
@@ -35,6 +35,6 @@ export const mockJobRecommendations: JobRecommendation[] = [
     location: 'Los Angeles, CA',
     skills: ['Figma', 'Adobe XD', 'User Research', 'Prototyping'],
     matchPercentage: 65,
-    url: '#',
+    url: 'https://linkedin.com/jobs/view/12348',
   },
 ];

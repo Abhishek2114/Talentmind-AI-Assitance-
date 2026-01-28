@@ -122,7 +122,7 @@ export function AnalysisResults({ result }: AnalysisResultsProps) {
                 </CardContent>
                 <CardFooter className="justify-end">
                     <Button variant="ghost" asChild>
-                        <a href={job.url}>View Job <ArrowRight className="ml-2 h-4 w-4" /></a>
+                        <a href={job.url} target="_blank" rel="noopener noreferrer">View Job <ArrowRight className="ml-2 h-4 w-4" /></a>
                     </Button>
                 </CardFooter>
               </Card>
