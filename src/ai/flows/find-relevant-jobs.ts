@@ -24,7 +24,7 @@ const FindRelevantJobsInputSchema = z.object({
 export type FindRelevantJobsInput = z.infer<typeof FindRelevantJobsInputSchema>;
 
 const FindRelevantJobsOutputSchema = z.object({
-  jobs: z.array(JobSchema).describe('A list of relevant job postings. Find at least 3 jobs.'),
+  jobs: z.array(JobSchema).describe('A list of relevant job postings. Find at least 5 jobs.'),
 });
 export type FindRelevantJobsOutput = z.infer<typeof FindRelevantJobsOutputSchema>;
 
@@ -39,15 +39,20 @@ const prompt = ai.definePrompt({
   name: 'findRelevantJobsPrompt',
   input: {schema: FindRelevantJobsInputSchema},
   output: {schema: FindRelevantJobsOutputSchema},
-  prompt: `You are a helpful AI assistant that finds relevant job postings on the internet based on a list of skills.
-  Your task is to find real, current job postings from job boards like LinkedIn, Indeed, Google Careers, etc. Do not make up jobs. Provide valid URLs.
+  prompt: `You are an expert job search assistant. Your primary task is to find real, up-to-date job postings from major online job platforms based on a list of skills provided.
 
-  Skills:
-  {{#each skills}}- {{{this}}}
-  {{/each}}
+Your goal is to provide high-quality, relevant results. Follow these instructions carefully:
+1.  **Search on Multiple Platforms**: Actively search for jobs on well-known platforms like LinkedIn, Indeed, Glassdoor, and Google Careers.
+2.  **Ensure Recency**: Prioritize jobs posted within the last 30 days to ensure they are current.
+3.  **Provide Direct Links**: The URL for each job must be a direct, functioning link to the job posting page itself, not a link to a search results page or a company's homepage.
+4.  **Do Not Invent Jobs**: You must not create or hallucinate job postings. All information must come from actual listings.
+5.  **Find at Least 5 Jobs**: Return a minimum of 5 relevant job postings.
 
-  Find at least 3 job postings that are a good match for these skills.
-  Return the jobs as a JSON object with a 'jobs' array.
+Here are the skills to base your search on:
+{{#each skills}}- {{{this}}}
+{{/each}}
+
+Return the findings as a JSON object that strictly follows the specified output format.
   `,
 });
 
