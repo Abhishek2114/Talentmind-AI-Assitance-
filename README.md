@@ -2,7 +2,7 @@
 
 ![TalentMind Screenshot](https://storage.googleapis.com/studioprototypr-assets/talentmind-screenshot.png)
 
-**TalentMind** is a cutting-edge, AI-powered career assistant designed to help job seekers land their dream job. By analyzing your resume against a specific job description, it provides a detailed breakdown of skill gaps, offers personalized feedback to improve your application, and even finds relevant, up-to-the-minute job postings from across the web.
+**TalentMind** is a cutting-edge, AI-powered career assistant desgit remote set-url origin to help job seekers land their dream job. By analyzing your resume against a specific job description, it provides a detailed breakdown of skill gaps, offers personalized feedback to improve your application, and even finds relevant, up-to-the-minute job postings from across the web.
 
 This application is built with a modern tech stack, leveraging the power of Google's Gemini AI through Genkit, all running on a seamless Next.js frontend.
 
