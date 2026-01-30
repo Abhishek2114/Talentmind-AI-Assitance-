@@ -1,7 +1,7 @@
 'use client';
 
-import { useFormStatus } from 'react-dom';
-import React, { useEffect, useRef, useState, useActionState } from 'react';
+import { useFormStatus, useFormState } from 'react-dom';
+import React, { useEffect, useRef, useState } from 'react';
 import { analyzeResumeAndJob } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -35,7 +35,7 @@ function SubmitButton() {
 
 export function TalentMindDashboard() {
   const [formKey, setFormKey] = useState(0);
-  const [state, formAction] = useActionState(analyzeResumeAndJob, initialState);
+  const [state, formAction] = useFormState(analyzeResumeAndJob, initialState);
   const { toast } = useToast();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [resumeFileName, setResumeFileName] = useState('');
