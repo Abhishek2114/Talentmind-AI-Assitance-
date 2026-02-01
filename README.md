@@ -1,6 +1,6 @@
 # TalentMind AI Assistant
 
-**TalentMind** is a cutting-edge, AI-powered career assistant desgit remote set-url origin to help job seekers land their dream job. By analyzing your resume against a specific job description, it provides a detailed breakdown of skill gaps, offers personalized feedback to improve your application, and even finds relevant, up-to-the-minute job postings from across the web.
+**TalentMind** is a cutting-edge, AI-powered career assistant designed to help job seekers land their dream job. By analyzing your resume against a specific job description, it provides a detailed breakdown of skill gaps, offers personalized feedback to improve your application, and even finds relevant, up-to-the-minute job postings from across the web.
 
 This application is built with a modern tech stack, leveraging the power of Google's Gemini AI through Genkit, all running on a seamless Next.js frontend.
 
@@ -63,6 +63,20 @@ To get a local copy up and running, follow these simple steps.
     npm run dev
     ```
     Open [http://localhost:9002](http://localhost:9002) with your browser to see the result.
+
+## 🚀 Deployment
+
+When you deploy this application to a hosting provider like Vercel, Netlify, or Firebase App Hosting from your GitHub repository, you **must** configure your `GEMINI_API_KEY` as an environment variable in the provider's settings.
+
+The local `.env` file is not uploaded to GitHub for security reasons, so the deployed application will not have access to the key unless you set it in your hosting platform's project settings.
+
+### Setting Environment Variables
+
+-   **Vercel:** Go to your Project > Settings > Environment Variables.
+-   **Netlify:** Go to your Site settings > Build & deploy > Environment.
+-   **Firebase App Hosting:** You will be prompted to set secrets during the `firebase apphosting:backends:create` flow. You can manage them later with `firebase apphosting:secrets`.
+
+Add a new variable with the name `GEMINI_API_KEY` and paste your key as the value. After setting the variable, you may need to redeploy your project for the change to take effect.
 
 ## 🔬 Inspecting AI Flows with Genkit
 

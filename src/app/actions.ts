@@ -22,6 +22,12 @@ export async function analyzeResumeAndJob(
   prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
+  if (!process.env.GEMINI_API_KEY) {
+    const errorMessage = 'The GEMINI_API_KEY is not configured on the server. Please add it to your deployment environment variables to enable AI features.';
+    console.error(errorMessage);
+    return { result: null, error: errorMessage };
+  }
+  
   const resumeFile = formData.get('resume') as File | null;
   const jobDescription = formData.get('jobDescription') as string | null;
 
