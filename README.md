@@ -1,4 +1,3 @@
-
 # 🚀 TalentMind AI: Your Personal Career Co-Pilot
 
 <div align="center">
@@ -42,6 +41,8 @@ This application is built with a modern tech stack, leveraging the power of Goog
 
 </div>
 
+*Note: These are placeholder images. To add your own, take screenshots of your application and replace the `https://placehold.co/...` URLs with links to your images.*
+
 ## 🧠 How The AI Works: The Prompt Flow
 
 TalentMind uses a sophisticated, multi-step AI flow orchestrated by **Genkit** to provide its comprehensive analysis. Here’s a look under the hood:
@@ -71,6 +72,8 @@ Below is a high-level overview of the application's architecture, showcasing the
 *High-level architecture of the TalentMind application.*
 
 </div>
+
+*Note: This is a placeholder for your architecture diagram. You can create your own diagram using a tool like diagrams.net or Lucidchart, upload it, and replace the `https://placehold.co/...` URL with the link to your image.*
 
 ## 🛠️ Tech Stack
 
