@@ -31,17 +31,19 @@ This application is built with a modern tech stack, leveraging the power of Goog
 -   **🔍 Real-time Job Search:** Based on your unique skill profile, the AI scours major job boards (like LinkedIn, Indeed, and Google Careers) to find current and relevant job openings.
 -   **💅 Sleek, Modern UI:** A beautiful and intuitive interface built with Next.js, Tailwind CSS, and ShadCN UI, featuring a "glassmorphism" design that's both professional and visually appealing.
 
-## 📸 Application Screenshots
+## 🏗️ Architecture Diagram
+
+Below is a high-level overview of the application's architecture, showcasing the flow of data from the user to the AI and back.
 
 <div align="center">
 
-| Main Dashboard                                                                                                                                                 | Analysis Results                                                                                  |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| ![Screenshot of the main dashboard](https://storage.googleapis.com/project-spark-3356e.appspot.com/2024-07-29T11%3A20%3A21.570Z-abhisheksingh_0.png) | ![Screenshot of the analysis results](https://placehold.co/800x600?text=AI+Analysis+Results) |
+![Architecture Diagram](https://github.com/user-attachments/assets/5155612f-91f1-4357-897b-9fe3d2b27092)
+
+*High-level architecture of the TalentMind application.*
 
 </div>
 
-*Note: To add your own screenshots, take pictures of your application, upload them somewhere public (like in a GitHub issue comment), and then replace the `https://placehold.co/...` URLs with the links to your images.*
+*Note: This is a placeholder for your architecture diagram. You can create your own diagram using a tool like diagrams.net or Lucidchart, upload it, and replace the `https://placehold.co/...` URL with the link to your image.*
 
 ## 🧠 How The AI Works: The Prompt Flow
 
@@ -61,17 +63,6 @@ TalentMind uses a sophisticated, multi-step AI flow orchestrated by **Genkit** t
 4.  **Final Output:** The results from all the AI flows are compiled into a single, comprehensive `AnalysisResult` object, which is then displayed to the user in a clean, tabbed interface.
 
 This entire process is defined as a serverless "flow" in Genkit, ensuring it's reliable, scalable, and easy to monitor.
-
-## 🏗️ Architecture Diagram
-
-Below is a high-level overview of the application's architecture, showcasing the flow of data from the user to the AI and back.
-
-<div align="center">
-
-![Architecture Diagram](https://storage.googleapis.com/project-spark-3356e.appspot.com/2024-07-29T10:13:30.932Z-abhisheksingh_0.png)
-*High-level architecture of the TalentMind application.*
-
-</div>
 
 ## 🛠️ Tech Stack
 
