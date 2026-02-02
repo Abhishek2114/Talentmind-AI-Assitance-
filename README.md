@@ -35,13 +35,13 @@ This application is built with a modern tech stack, leveraging the power of Goog
 
 <div align="center">
 
-| Main Dashboard                                                                              | Analysis Results                                                                                  |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| ![Screenshot of the main dashboard](https://placehold.co/800x600?text=TalentMind+Dashboard) | ![Screenshot of the analysis results](https://placehold.co/800x600?text=AI+Analysis+Results) |
+| Main Dashboard                                                                                                                                                 | Analysis Results                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| ![Screenshot of the main dashboard](https://storage.googleapis.com/project-spark-3356e.appspot.com/2024-07-29T11%3A20%3A21.570Z-abhisheksingh_0.png) | ![Screenshot of the analysis results](https://placehold.co/800x600?text=AI+Analysis+Results) |
 
 </div>
 
-*Note: These are placeholder images. To add your own, take screenshots of your application and replace the `https://placehold.co/...` URLs with links to your images.*
+*Note: To add your own screenshots, take pictures of your application, upload them somewhere public (like in a GitHub issue comment), and then replace the `https://placehold.co/...` URLs with the links to your images.*
 
 ## 🧠 How The AI Works: The Prompt Flow
 
