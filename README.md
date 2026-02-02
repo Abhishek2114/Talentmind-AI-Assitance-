@@ -68,12 +68,12 @@ Below is a high-level overview of the application's architecture, showcasing the
 
 <div align="center">
 
-![Architecture Diagram](https://placehold.co/1200x800/222A38/FFFFFF?text=Application+Architecture+Diagram)
+![Architecture Diagram](https://your-image-url-goes-here.com/architecture.png)
 *High-level architecture of the TalentMind application.*
 
 </div>
 
-*Note: This is a placeholder for your architecture diagram. You can create your own diagram using a tool like diagrams.net or Lucidchart, upload it, and replace the `https://placehold.co/...` URL with the link to your image.*
+*Note: This is a placeholder for your architecture diagram. You can create your own diagram using a tool like diagrams.net or Lucidchart, upload it to a host, and replace the placeholder URL above with the link to your image.*
 
 ## 🛠️ Tech Stack
 
