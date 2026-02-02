@@ -33,17 +33,29 @@ This application is built with a modern tech stack, leveraging the power of Goog
 
 ## 🏗️ Architecture Diagram
 
-Below is a high-level overview of the application's architecture, showcasing the flow of data from the user to the AI and back.
+Below is a high-level overview of the application's architecture.
 
-<div align="center">
-
-![Architecture Diagram](https://github.com/user-attachments/assets/5155612f-91f1-4357-897b-9fe3d2b27092)
-
-*High-level architecture of the TalentMind application.*
-
-</div>
-
-*Note: This is a placeholder for your architecture diagram. You can create your own diagram using a tool like diagrams.net or Lucidchart, upload it, and replace the `https://placehold.co/...` URL with the link to your image.*
+```
+TalentMind AI
+│
+├── Next.js Frontend
+│   ├── Resume Upload
+│   ├── JD Input
+│   ├── Results Dashboard
+│
+├── Genkit AI Layer
+│   ├── Resume Parser
+│   ├── JD Analyzer
+│   ├── Skill Gap Engine
+│   ├── Feedback Generator
+│   └── Job Search Flow
+│
+├── Google Gemini LLM
+│
+└── Deployment
+    ├── Firebase App Hosting
+    └── Vercel / Netlify
+```
 
 ## 🧠 How The AI Works: The Prompt Flow
 
