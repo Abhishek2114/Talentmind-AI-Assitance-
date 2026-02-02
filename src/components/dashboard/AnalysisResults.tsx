@@ -14,14 +14,10 @@ interface AnalysisResultsProps {
 }
 
 export function AnalysisResults({ result }: AnalysisResultsProps) {
-  const allSkills = new Set([
-      ...result.resumeInfo.skills, 
-      ...result.jobInfo.requiredSkills
-    ]);
-  const resumeSkills = new Set(result.resumeInfo.skills);
-  const jobSkills = new Set(result.jobInfo.requiredSkills);
+  const resumeSkillsLower = new Set(result.resumeInfo.skills.map(s => s.toLowerCase()));
+  const jobSkillsLower = new Set(result.jobInfo.requiredSkills.map(s => s.toLowerCase()));
   
-  const matchingSkills = result.resumeInfo.skills.filter(skill => jobSkills.has(skill));
+  const matchingSkills = result.resumeInfo.skills.filter(skill => jobSkillsLower.has(skill.toLowerCase()));
 
   return (
     <Tabs defaultValue="skill-gap" className="w-full">

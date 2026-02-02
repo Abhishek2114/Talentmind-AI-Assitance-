@@ -2,7 +2,6 @@
 
 import { analyzeJobDescription } from '@/ai/flows/analyze-job-description';
 import { generateResumeFeedback } from '@/ai/flows/generate-resume-feedback';
-import { identifySkillGaps } from '@/ai/flows/identify-skill-gaps';
 import { parseResumeInformation } from '@/ai/flows/parse-resume-information';
 import type { AnalysisResult } from '@/lib/types';
 import { findRelevantJobs } from '@/ai/flows/find-relevant-jobs';
@@ -57,13 +56,18 @@ export async function analyzeResumeAndJob(
 
     const allSkills = [...new Set([...resumeInfo.skills, ...jobInfo.requiredSkills])];
 
-    const [skillGaps, feedback, jobRecommendationsResult] = await Promise.all([
-      identifySkillGaps({ resume: resumeText, jobDescription }),
+    // Calculate skill gaps directly instead of using a separate AI flow
+    const resumeSkillsSet = new Set(resumeInfo.skills.map(skill => skill.toLowerCase()));
+    const requiredSkills = jobInfo.requiredSkills || [];
+    const skillGapsList = requiredSkills.filter(skill => !resumeSkillsSet.has(skill.toLowerCase()));
+
+    const skillGaps = { skillGaps: skillGapsList };
+
+    const [feedback, jobRecommendationsResult] = await Promise.all([
       generateResumeFeedback({ resumeText }),
       findRelevantJobs({ skills: allSkills }),
     ]);
 
-    if (!skillGaps) throw new Error('Could not analyze skill gaps.');
     if (!feedback) throw new Error('Could not generate feedback.');
     if (!jobRecommendationsResult) throw new Error('Could not find job recommendations.');
 
