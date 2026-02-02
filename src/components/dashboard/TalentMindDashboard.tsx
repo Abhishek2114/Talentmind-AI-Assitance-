@@ -7,13 +7,13 @@ import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { FileUp, Loader2, RefreshCw } from 'lucide-react';
 import { AnalysisResults } from './AnalysisResults';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '../ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { cn } from '@/lib/utils';
 
 const initialState = { result: null, error: null };
 
@@ -187,12 +187,15 @@ export function TalentMindDashboard() {
           </CardHeader>
           <CardContent>
             <Label htmlFor="jobDescription" className="sr-only">Job Description</Label>
-            <Textarea
+            <textarea
               id="jobDescription"
               name="jobDescription"
               placeholder="Paste job description here..."
               required
               rows={12}
+              className={cn(
+                'flex min-h-[80px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm'
+              )}
             />
           </CardContent>
         </Card>
