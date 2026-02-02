@@ -1,7 +1,7 @@
 'use client';
 
-import { useFormStatus } from 'react-dom';
 import React, { useEffect, useRef, useState, useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { analyzeResumeAndJob } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,7 +13,7 @@ import { FileUp, Loader2, RefreshCw } from 'lucide-react';
 import { AnalysisResults } from './AnalysisResults';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '../ui/badge';
-import { ScrollArea } from '../ui/scroll-area';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const initialState = { result: null, error: null };
 
@@ -81,48 +81,62 @@ export function TalentMindDashboard() {
                  <Card>
                     <CardHeader>
                         <CardTitle>Resume Summary</CardTitle>
+                        <CardDescription>Key information from your resume.</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <ScrollArea className="h-[200px] pr-4">
-                            <div className="space-y-4">
-                                <div>
-                                    <h4 className="font-semibold mb-2">Skills</h4>
-                                    <div className="flex flex-wrap gap-2">
-                                        {state.result.resumeInfo.skills.map(skill => <Badge key={skill} variant="secondary">{skill}</Badge>)}
+                        <Accordion type="multiple" defaultValue={['resume-skills', 'resume-experience', 'resume-education']} className="w-full">
+                            <AccordionItem value="resume-skills">
+                                <AccordionTrigger className="text-base">Skills</AccordionTrigger>
+                                <AccordionContent>
+                                    <div className="flex flex-wrap gap-2 pt-2">
+                                        {state.result.resumeInfo.skills.length > 0 ?
+                                            state.result.resumeInfo.skills.map(skill => <Badge key={skill} variant="secondary">{skill}</Badge>) :
+                                            <p className="text-sm text-muted-foreground">No skills found.</p>
+                                        }
                                     </div>
-                                </div>
-                                <div>
-                                    <h4 className="font-semibold mb-2">Experience</h4>
-                                    <p className="text-sm text-muted-foreground">{state.result.resumeInfo.experience}</p>
-                                </div>
-                                <div>
-                                    <h4 className="font-semibold mb-2">Education</h4>
-                                    <p className="text-sm text-muted-foreground">{state.result.resumeInfo.education}</p>
-                                </div>
-                            </div>
-                        </ScrollArea>
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="resume-experience">
+                                <AccordionTrigger className="text-base">Experience</AccordionTrigger>
+                                <AccordionContent className="text-sm text-muted-foreground">
+                                    {state.result.resumeInfo.experience || "No experience summary found."}
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="resume-education">
+                                <AccordionTrigger className="text-base">Education</AccordionTrigger>
+                                <AccordionContent className="text-sm text-muted-foreground">
+                                    {state.result.resumeInfo.education || "No education summary found."}
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
                     </CardContent>
                 </Card>
 
                 <Card>
                     <CardHeader>
                         <CardTitle>Job Requirements</CardTitle>
+                        <CardDescription>What the company is looking for.</CardDescription>
                     </CardHeader>
                     <CardContent>
-                       <ScrollArea className="h-[200px] pr-4">
-                            <div className="space-y-4">
-                                <div>
-                                    <h4 className="font-semibold mb-2">Required Skills</h4>
-                                    <div className="flex flex-wrap gap-2">
-                                        {state.result.jobInfo.requiredSkills.map(skill => <Badge key={skill} variant="secondary">{skill}</Badge>)}
+                       <Accordion type="multiple" defaultValue={['job-skills', 'job-experience']} className="w-full">
+                            <AccordionItem value="job-skills">
+                                <AccordionTrigger className="text-base">Required Skills</AccordionTrigger>
+                                <AccordionContent>
+                                    <div className="flex flex-wrap gap-2 pt-2">
+                                         {state.result.jobInfo.requiredSkills.length > 0 ?
+                                            state.result.jobInfo.requiredSkills.map(skill => <Badge key={skill} variant="secondary">{skill}</Badge>) :
+                                            <p className="text-sm text-muted-foreground">No required skills specified.</p>
+                                         }
                                     </div>
-                                </div>
-                                <div>
-                                    <h4 className="font-semibold mb-2">Required Experience</h4>
-                                    <p className="text-sm text-muted-foreground">{state.result.jobInfo.requiredExperience}</p>
-                                </div>
-                            </div>
-                        </ScrollArea>
+                                </AccordionContent>
+                            </AccordionItem>
+                            <AccordionItem value="job-experience">
+                                <AccordionTrigger className="text-base">Required Experience</AccordionTrigger>
+                                <AccordionContent className="text-sm text-muted-foreground">
+                                    {state.result.jobInfo.requiredExperience || "No required experience specified."}
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
                     </CardContent>
                 </Card>
             </div>

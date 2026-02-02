@@ -42,16 +42,16 @@ const prompt = ai.definePrompt({
   name: 'analyzeJobDescriptionPrompt',
   input: {schema: AnalyzeJobDescriptionInputSchema},
   output: {schema: AnalyzeJobDescriptionOutputSchema},
-  prompt: `You are an expert HR assistant who can analyze job descriptions and provide the required skills and experience.
+  prompt: `You are an expert HR assistant who specializes in parsing job descriptions. Your task is to analyze the following job description and extract two key pieces of information:
+1.  **Required Skills**: A list of essential technical and soft skills mentioned.
+2.  **Required Experience**: A concise summary of the necessary years of experience, roles, and qualifications.
 
-Analyze the following job description and extract the required skills and experience.
+Analyze the following job description:
+---
+{{{jobDescription}}}
+---
 
-Job Description: {{{jobDescription}}}
-
-Output the required skills as a list of strings, and the required experience as a text description.
-
-Skills: {{output.requiredSkills}}
-Experience: {{output.requiredExperience}}`,
+Return the results as a JSON object that strictly adheres to the output schema. For "requiredSkills", provide a JSON array of strings. For "requiredExperience", provide a single string summarizing the experience requirements.`,
 });
 
 const analyzeJobDescriptionFlow = ai.defineFlow(
