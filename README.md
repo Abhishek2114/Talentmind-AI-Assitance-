@@ -1,98 +1,64 @@
-# 🚀 TalentMind AI: Your Personal Career Co-Pilot
+# 🚀 TalentMind AI: Personal Career Co-Pilot
 
-<div align="center">
-
-**Stop guessing, start getting hired. TalentMind is a cutting-edge, AI-powered career assistant that bridges the gap between your resume and your dream job.**
-
-</div>
+**TalentMind AI** is an automated career assistant that bridges the gap between candidate resumes and specific job requirements. By leveraging Generative AI, it identifies skill deficiencies, provides actionable resume feedback, and retrieves real-time job matches tailored to the user's professional profile.
 
 ---
 
-**TalentMind** analyzes your resume against any job description to give you an undeniable advantage. It provides a detailed breakdown of skill gaps, offers personalized feedback to improve your application, and even finds relevant, up-to-the-minute job postings from across the web.
+## 🏗️ System Architecture
 
-This application is built with a modern tech stack, leveraging the power of Google's Gemini AI through Genkit, all running on a seamless Next.js frontend.
-
-<br />
-
-## ✨ Key Features
-
--   **📄 Smart Resume & Job Analysis:** Upload your resume (PDF) and paste a job description to get an instant, AI-driven analysis of your compatibility.
--   **🎯 Skill Gap Identification:** The AI pinpoints the exact skills and qualifications listed in the job description that are missing from your resume. See what you have and what you need, instantly.
--   **✍️ AI-Powered Resume Feedback:** Receive actionable, constructive feedback on your resume's content, focusing on areas for improvement to better target the role.
--   **🔍 Real-time Job Search:** Based on your unique skill profile, the AI scours major job boards (like LinkedIn, Indeed, and Google Careers) to find current and relevant job openings.
--   **💅 Sleek, Modern UI:** A beautiful and intuitive interface built with Next.js, Tailwind CSS, and ShadCN UI, featuring interactive accordions and a professional "glassmorphism" design.
-
-## 🏗️ Architecture Design
+The application is built using a modern, serverless architecture centered on the Next.js ecosystem and Genkit AI orchestration.
 
 ```text
 TalentMind AI
 │
-├── Next.js Frontend
-│   ├── Resume Upload
-│   ├── JD Input
-│   └── Results Dashboard
+├── Client Layer (Next.js 14 App Router)
+│   ├── UI Framework: React, Tailwind CSS, ShadCN UI
+│   ├── Features: PDF Upload, JD Analysis Interface
+│   └── State Management: React Server Actions & useActionState
 │
-├── Genkit AI Layer
-│   ├── Resume Parser
-│   ├── JD Analyzer
-│   ├── Skill Gap Engine
-│   ├── Feedback Generator
-│   └── Job Search Flow
+├── Business Logic Layer (Server Actions)
+│   └── Entry Point: analyzeResumeAndJob (Async Orchestration)
 │
-├── Google Gemini LLM
+├── Genkit AI Orchestration (Server-Side)
+│   ├── parseResumeInformation (PDF-to-Schema Parsing)
+│   ├── analyzeJobDescription (Requirement Extraction)
+│   ├── generateResumeFeedback (Contextual Career Coaching)
+│   └── findRelevantJobs (AI-Driven Search Retrieval)
 │
-└── Deployment
-    ├── Firebase App Hosting
-    └── Vercel / Netlify
+├── Model Layer (LLM)
+│   └── Google Gemini 2.5 Flash
+│
+└── Infrastructure
+    └── Platform: Firebase App Hosting (Google Cloud)
 ```
 
-## 🧠 How The AI Works: The Prompt Flow
+## 🧠 How The AI Works: Genkit Flow Orchestration
 
-TalentMind uses a sophisticated, multi-step AI flow orchestrated by **Genkit** to provide its comprehensive analysis. Here’s a look under the hood:
+TalentMind utilizes **Genkit**, a production-grade AI toolkit from Firebase, to manage complex multi-step interactions with the LLM. The system executes a non-linear analysis pipeline designed for low latency and high accuracy.
 
-1.  **Initial Input:** The user provides two key pieces of information: their **Resume (PDF)** and the text of a **Job Description**.
+### 1. Multi-Modal Ingestion & Parallel Parsing
+The analysis begins with a parallel execution of two distinct flows:
+*   **Resume Parsing (`parseResumeInformation`)**: Ingests a PDF (as a Base64 Data URI) and uses the Gemini model to map unstructured text into a typed Zod schema containing `skills`, `experience`, `education`, and `contactInformation`.
+*   **Job Description Analysis (`analyzeJobDescription`)**: Analyzes raw job text to extract essential `requiredSkills` and a summary of the `requiredExperience`.
 
-2.  **Parallel Processing:** To maximize speed, the system runs two AI flows at the same time:
-    *   **Flow A: Resume Parsing (`parseResumeInformation`)**: The uploaded PDF is sent to the Gemini model, which extracts key information into a structured format: `skills`, `experience`, `education`, and `contactInformation`.
-    *   **Flow B: Job Description Analysis (`analyzeJobDescription`)**: The job description text is sent to the Gemini model, which identifies and extracts the `requiredSkills` and a summary of the `requiredExperience`.
+### 2. Algorithmic Skill Matching
+Rather than relying solely on fuzzy LLM matching for the core comparison, the system employs a deterministic **Skill Match Engine**. It performs a case-insensitive intersection of the candidate's extracted skills against the extracted job requirements to provide a 100% accurate "Matching vs. Missing" report.
 
-3.  **Core Analysis (Concurrent Flows):** Once the initial data is processed, the AI performs the main analysis by running three more flows in parallel:
-    *   **Skill Gap Analysis**: A precise, case-insensitive comparison engine determines the exact overlap and gaps between your profile and the job.
-    *   **Resume Feedback (`generateResumeFeedback`)**: The parsed resume text is analyzed to generate constructive `feedback` for improvement.
-    *   **Job Search (`findRelevantJobs`)**: The complete list of skills (from both the resume and the job description) is used to perform a real-time search for relevant, recent job postings.
+### 3. Contextual Insight Generation
+Once the core entities are parsed, the system initiates a second tier of parallel flows:
+*   **Actionable Feedback (`generateResumeFeedback`)**: Evaluates the resume text against the identified gaps to generate specific, constructive suggestions.
+*   **Real-time Job Search (`findRelevantJobs`)**: Uses the combined skill set to search major job platforms (LinkedIn, Indeed, etc.) for live opportunities, ensuring recommendations are grounded in current market reality.
 
-4.  **Final Output:** The results from all the AI flows are compiled into a single, comprehensive `AnalysisResult` object, which is then displayed to the user in a clean, tabbed interface.
+### 4. Deterministic Output
+All flows are governed by strict Zod schemas, ensuring that the frontend receives predictable JSON objects, eliminating the common "hallucination" issues associated with raw LLM text responses.
+
+---
 
 ## 🛠️ Tech Stack
 
--   **Framework:** [Next.js](https://nextjs.org/) (App Router)
--   **Styling:** [Tailwind CSS](https://tailwindcss.com/) & [ShadCN UI](https://ui.shadcn.com/)
--   **Generative AI:** [Google's Gemini model](https://deepmind.google.com/technologies/gemini/)
--   **AI Toolkit:** [Genkit (from Firebase)](https://firebase.google.com/docs/genkit)
--   **Deployment:** Ready for [Firebase App Hosting](https://firebase.google.com/docs/app-hosting)
-
-## ⚙️ Getting Started
-
-### Prerequisites
-
--   [Node.js](https://nodejs.org/) (v18 or later)
--   [npm](https://www.npmjs.com/)
-
-### Installation & Setup
-
-1.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
-
-2.  **Set up environment variables:**
-    Create a file named `.env` in the root of your project and add your Google AI API key.
-    ```env
-    GEMINI_API_KEY=your_google_ai_api_key_here
-    ```
-
-3.  **Run the development server:**
-    ```bash
-    npm run dev
-    ```
-    Open [http://localhost:9002](http://localhost:9002) with your browser to see the result.
+- **Framework:** Next.js (App Router)
+- **AI Toolkit:** Genkit (v1.x)
+- **LLM:** Google Gemini 2.5 Flash
+- **Styling:** Tailwind CSS & ShadCN UI
+- **Runtime:** Node.js
+- **Deployment:** Firebase App Hosting
