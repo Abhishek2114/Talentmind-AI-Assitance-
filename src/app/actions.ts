@@ -39,15 +39,16 @@ export async function analyzeResumeAndJob(
     return { result: null, error: 'Job description is required.' };
   }
 
-  // Implementation of a simple retry strategy for quota errors
+  // Robust retry strategy with exponential backoff
   let attempts = 0;
-  const maxAttempts = 2;
+  const maxAttempts = 3;
+  const baseDelay = 4000; // Start with 4 seconds
 
   while (attempts < maxAttempts) {
     try {
       const resumeDataUri = await fileToDataUri(resumeFile);
 
-      // Perform a single consolidated AI request to minimize quota usage
+      // Perform consolidated AI request
       const analysis = await comprehensiveAnalysis({ 
         resumeDataUri, 
         jobDescription 
@@ -55,10 +56,10 @@ export async function analyzeResumeAndJob(
 
       if (!analysis) throw new Error('AI Analysis failed to produce results.');
 
-      // Calculate skill gaps deterministically in code (case-insensitive)
-      const resumeSkillsSet = new Set(analysis.resumeInfo.skills.map(skill => skill.toLowerCase()));
+      // Deterministic skill gap calculation
+      const resumeSkillsSet = new Set(analysis.resumeInfo.skills.map(skill => skill.toLowerCase().trim()));
       const requiredSkills = analysis.jobInfo.requiredSkills || [];
-      const skillGapsList = requiredSkills.filter(skill => !resumeSkillsSet.has(skill.toLowerCase()));
+      const skillGapsList = requiredSkills.filter(skill => !resumeSkillsSet.has(skill.toLowerCase().trim()));
 
       return {
         result: { 
@@ -72,21 +73,22 @@ export async function analyzeResumeAndJob(
       };
     } catch (e: any) {
       attempts++;
-      console.error(`Attempt ${attempts} failed:`, e.message);
+      console.error(`Attempt ${attempts} failed for analysis:`, e.message);
 
-      // If it's a 429 (Too Many Requests) and we have attempts left, wait and retry
+      // Handle Quota Exceeded with exponential backoff
       if (e.message.includes('429') && attempts < maxAttempts) {
-        await wait(2000); // Wait 2 seconds before retrying
+        const backoffTime = baseDelay * Math.pow(2, attempts - 1);
+        await wait(backoffTime);
         continue;
       }
 
       const userMessage = e.message.includes('429') 
-        ? 'The AI service is currently busy due to high demand (Quota Exceeded). Please wait a few seconds and try again.'
+        ? 'The AI service is currently busy. We tried to retry automatically, but the quota is still exceeded. Please wait a moment and try again.'
         : (e.message || 'An unexpected error occurred during analysis.');
 
       return { result: null, error: userMessage };
     }
   }
 
-  return { result: null, error: 'Maximum analysis attempts exceeded. Please try again later.' };
+  return { result: null, error: 'Maximum analysis attempts exceeded. Please try again in 30 seconds.' };
 }
