@@ -1,10 +1,7 @@
 'use server';
 
-import { analyzeJobDescription } from '@/ai/flows/analyze-job-description';
-import { generateResumeFeedback } from '@/ai/flows/generate-resume-feedback';
-import { parseResumeInformation } from '@/ai/flows/parse-resume-information';
+import { comprehensiveAnalysis } from '@/ai/flows/comprehensive-analysis';
 import type { AnalysisResult } from '@/lib/types';
-import { findRelevantJobs } from '@/ai/flows/find-relevant-jobs';
 
 type FormState = {
   result: AnalysisResult | null;
@@ -16,6 +13,11 @@ async function fileToDataUri(file: File): Promise<string> {
   const buffer = Buffer.from(arrayBuffer);
   return `data:${file.type};base64,${buffer.toString('base64')}`;
 }
+
+/**
+ * Utility to wait for a specific duration
+ */
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export async function analyzeResumeAndJob(
   prevState: FormState,
@@ -37,52 +39,54 @@ export async function analyzeResumeAndJob(
     return { result: null, error: 'Job description is required.' };
   }
 
-  try {
-    const resumeDataUri = await fileToDataUri(resumeFile);
+  // Implementation of a simple retry strategy for quota errors
+  let attempts = 0;
+  const maxAttempts = 2;
 
-    const [resumeInfo, jobInfo] = await Promise.all([
-      parseResumeInformation({ resumeDataUri }),
-      analyzeJobDescription({ jobDescription }),
-    ]);
+  while (attempts < maxAttempts) {
+    try {
+      const resumeDataUri = await fileToDataUri(resumeFile);
 
-    if (!resumeInfo) throw new Error('Could not parse resume.');
-    if (!jobInfo) throw new Error('Could not analyze job description.');
+      // Perform a single consolidated AI request to minimize quota usage
+      const analysis = await comprehensiveAnalysis({ 
+        resumeDataUri, 
+        jobDescription 
+      });
 
-    const resumeText = `
-      Skills: ${resumeInfo.skills.join(', ')}
-      Experience: ${resumeInfo.experience}
-      Education: ${resumeInfo.education}
-    `;
+      if (!analysis) throw new Error('AI Analysis failed to produce results.');
 
-    const allSkills = [...new Set([...resumeInfo.skills, ...jobInfo.requiredSkills])];
+      // Calculate skill gaps deterministically in code (case-insensitive)
+      const resumeSkillsSet = new Set(analysis.resumeInfo.skills.map(skill => skill.toLowerCase()));
+      const requiredSkills = analysis.jobInfo.requiredSkills || [];
+      const skillGapsList = requiredSkills.filter(skill => !resumeSkillsSet.has(skill.toLowerCase()));
 
-    // Calculate skill gaps directly instead of using a separate AI flow
-    const resumeSkillsSet = new Set(resumeInfo.skills.map(skill => skill.toLowerCase()));
-    const requiredSkills = jobInfo.requiredSkills || [];
-    const skillGapsList = requiredSkills.filter(skill => !resumeSkillsSet.has(skill.toLowerCase()));
+      return {
+        result: { 
+          resumeInfo: analysis.resumeInfo, 
+          jobInfo: analysis.jobInfo, 
+          skillGaps: { skillGaps: skillGapsList }, 
+          feedback: analysis.feedback,
+          jobRecommendations: analysis.jobRecommendations 
+        },
+        error: null,
+      };
+    } catch (e: any) {
+      attempts++;
+      console.error(`Attempt ${attempts} failed:`, e.message);
 
-    const skillGaps = { skillGaps: skillGapsList };
+      // If it's a 429 (Too Many Requests) and we have attempts left, wait and retry
+      if (e.message.includes('429') && attempts < maxAttempts) {
+        await wait(2000); // Wait 2 seconds before retrying
+        continue;
+      }
 
-    const [feedback, jobRecommendationsResult] = await Promise.all([
-      generateResumeFeedback({ resumeText }),
-      findRelevantJobs({ skills: allSkills }),
-    ]);
+      const userMessage = e.message.includes('429') 
+        ? 'The AI service is currently busy due to high demand (Quota Exceeded). Please wait a few seconds and try again.'
+        : (e.message || 'An unexpected error occurred during analysis.');
 
-    if (!feedback) throw new Error('Could not generate feedback.');
-    if (!jobRecommendationsResult) throw new Error('Could not find job recommendations.');
-
-    return {
-      result: { 
-        resumeInfo, 
-        jobInfo, 
-        skillGaps, 
-        feedback,
-        jobRecommendations: jobRecommendationsResult.jobs 
-      },
-      error: null,
-    };
-  } catch (e: any) {
-    console.error('Error in analyzeResumeAndJob action:', e);
-    return { result: null, error: e.message || 'An unexpected error occurred during analysis.' };
+      return { result: null, error: userMessage };
+    }
   }
+
+  return { result: null, error: 'Maximum analysis attempts exceeded. Please try again later.' };
 }
