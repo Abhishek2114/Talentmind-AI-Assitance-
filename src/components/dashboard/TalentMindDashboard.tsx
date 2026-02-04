@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { FileUp, Loader2, RefreshCw, ClipboardList, UserCircle, Sparkles } from 'lucide-react';
+import { FileUp, Loader2, RefreshCw, ClipboardList, UserCircle, Sparkles, FileText, CheckCircle2 } from 'lucide-react';
 import { AnalysisResults } from './AnalysisResults';
 import { Badge } from '../ui/badge';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -18,14 +18,17 @@ const initialState = { result: null, error: null };
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" className="w-full shadow-lg" size="lg" disabled={pending}>
+    <Button type="submit" className="w-full shadow-2xl h-14 text-lg font-bold tracking-tight bg-primary hover:bg-primary/90 transition-all active:scale-[0.98]" disabled={pending}>
       {pending ? (
         <>
-          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-          Processing Intelligence...
+          <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+          Analyzing Intelligence...
         </>
       ) : (
-        'Start Deep Analysis'
+        <>
+          <Sparkles className="mr-2 h-5 w-5" />
+          Start Deep Analysis
+        </>
       )}
     </Button>
   );
@@ -67,31 +70,38 @@ export function TalentMindDashboard() {
   
   if (state.result) {
     return (
-      <div className="space-y-8 animate-in fade-in duration-700">
-        <div className="flex justify-between items-center">
-          <h3 className="text-2xl font-bold font-headline">Analysis Overview</h3>
-          <Button onClick={handleReset} variant="outline" size="sm">
+      <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="flex justify-between items-center bg-background/40 backdrop-blur-xl p-4 rounded-2xl border border-white/10">
+          <div>
+            <h3 className="text-2xl font-bold font-headline text-white">Analysis Overview</h3>
+            <p className="text-xs text-muted-foreground">Strategic alignment report generated successfully.</p>
+          </div>
+          <Button onClick={handleReset} variant="outline" size="sm" className="bg-white/5 hover:bg-white/10">
             <RefreshCw className="mr-2 h-4 w-4" />
-            Reset
+            New Analysis
           </Button>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-4 space-y-6">
-                 <Card className="border-primary/10 shadow-sm">
-                    <CardHeader className="pb-4">
-                        <CardTitle className="text-lg flex items-center gap-2">
+                 <Card className="border-white/10 shadow-2xl bg-black/40 backdrop-blur-md overflow-hidden">
+                    <CardHeader className="pb-4 bg-white/5">
+                        <CardTitle className="text-lg flex items-center gap-2 text-white">
                           <UserCircle className="h-5 w-5 text-primary" />
-                          Resume Profile
+                          Extracted Profile
                         </CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="pt-6">
                         <Accordion type="multiple" defaultValue={['resume-skills']} className="w-full">
                             <AccordionItem value="resume-skills" className="border-none">
-                                <AccordionTrigger className="text-sm font-medium hover:no-underline">Extracted Skills</AccordionTrigger>
+                                <AccordionTrigger className="text-sm font-semibold text-white/90 hover:no-underline py-2">Candidate Skills</AccordionTrigger>
                                 <AccordionContent>
-                                    <div className="flex flex-wrap gap-1.5 pt-2">
+                                    <div className="flex flex-wrap gap-1.5 pt-4">
                                         {state.result.resumeInfo.skills.length > 0 ?
-                                            state.result.resumeInfo.skills.map(skill => <Badge key={skill} variant="secondary" className="text-[10px] font-medium">{skill}</Badge>) :
+                                            state.result.resumeInfo.skills.map(skill => (
+                                              <Badge key={skill} variant="secondary" className="bg-primary/20 text-primary-foreground border-primary/20 text-[10px] py-1">
+                                                {skill}
+                                              </Badge>
+                                            )) :
                                             <p className="text-sm text-muted-foreground italic">No skills identified.</p>
                                         }
                                     </div>
@@ -101,21 +111,25 @@ export function TalentMindDashboard() {
                     </CardContent>
                 </Card>
 
-                <Card className="border-primary/10 shadow-sm">
-                    <CardHeader className="pb-4">
-                        <CardTitle className="text-lg flex items-center gap-2">
+                <Card className="border-white/10 shadow-2xl bg-black/40 backdrop-blur-md overflow-hidden">
+                    <CardHeader className="pb-4 bg-white/5">
+                        <CardTitle className="text-lg flex items-center gap-2 text-white">
                           <ClipboardList className="h-5 w-5 text-accent" />
-                          Job Profile
+                          Role Requirements
                         </CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="pt-6">
                        <Accordion type="multiple" defaultValue={['job-skills']} className="w-full">
                             <AccordionItem value="job-skills" className="border-none">
-                                <AccordionTrigger className="text-sm font-medium hover:no-underline">Target Requirements</AccordionTrigger>
+                                <AccordionTrigger className="text-sm font-semibold text-white/90 hover:no-underline py-2">Target Skills</AccordionTrigger>
                                 <AccordionContent>
-                                    <div className="flex flex-wrap gap-1.5 pt-2">
+                                    <div className="flex flex-wrap gap-1.5 pt-4">
                                          {state.result.jobInfo.requiredSkills.length > 0 ?
-                                            state.result.jobInfo.requiredSkills.map(skill => <Badge key={skill} variant="secondary" className="text-[10px] font-medium">{skill}</Badge>) :
+                                            state.result.jobInfo.requiredSkills.map(skill => (
+                                              <Badge key={skill} variant="secondary" className="bg-accent/20 text-accent-foreground border-accent/20 text-[10px] py-1">
+                                                {skill}
+                                              </Badge>
+                                            )) :
                                             <p className="text-sm text-muted-foreground italic">Generic role requirements.</p>
                                          }
                                     </div>
@@ -135,14 +149,14 @@ export function TalentMindDashboard() {
   
 
   return (
-    <form key={formKey} action={formAction} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-      <div className="space-y-8">
+    <form key={formKey} action={formAction} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start animate-in fade-in duration-1000">
+      <div className="space-y-10">
         <div className="space-y-4">
-          <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-xs">
-            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10">1</span>
+          <div className="flex items-center gap-2 text-white font-bold uppercase tracking-wider text-[10px] bg-primary/30 w-fit px-3 py-1 rounded-full backdrop-blur-md">
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-white text-[10px]">1</span>
             Source Document
           </div>
-          <Card className="relative overflow-hidden border-dashed">
+          <Card className="relative overflow-hidden border-none bg-white/95 shadow-2xl transition-all hover:ring-2 hover:ring-primary/20">
             <CardContent className="p-0">
               <Label htmlFor="resume" className="sr-only">Resume</Label>
               <Input
@@ -155,34 +169,39 @@ export function TalentMindDashboard() {
                 accept=".pdf"
                 ref={fileInputRef}
               />
-              <div className="flex flex-col items-center justify-center p-12 text-center group transition-colors hover:bg-muted/30">
-                  <div className="mb-4 rounded-full bg-primary/5 p-4 transition-colors group-hover:bg-primary/10">
-                    <FileUp className="w-8 h-8 text-primary"/>
+              <div className="flex flex-col items-center justify-center p-14 text-center group transition-colors hover:bg-slate-50">
+                  <div className="mb-5 rounded-2xl bg-primary/10 p-5 transition-transform group-hover:scale-110 duration-300">
+                    <FileUp className="w-10 h-10 text-primary"/>
                   </div>
-                  <h4 className="font-semibold text-sm mb-1">
+                  <h4 className="font-bold text-slate-900 text-lg mb-2">
                       {resumeFileName ? resumeFileName : 'Upload professional resume'}
                   </h4>
-                  <p className="text-xs text-muted-foreground">PDF format only. Max 5MB.</p>
+                  <p className="text-xs text-slate-500 font-medium">PDF format only. Standard resume layouts preferred.</p>
+                  {resumeFileName && (
+                    <Badge variant="outline" className="mt-4 border-primary/30 text-primary bg-primary/5 px-3 py-1 animate-in zoom-in-50">
+                      <CheckCircle2 className="mr-1.5 h-3 w-3" /> File Selected
+                    </Badge>
+                  )}
               </div>
             </CardContent>
           </Card>
         </div>
 
         <div className="space-y-4">
-          <div className="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-xs">
-            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10">2</span>
+          <div className="flex items-center gap-2 text-white font-bold uppercase tracking-wider text-[10px] bg-accent/30 w-fit px-3 py-1 rounded-full backdrop-blur-md">
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent text-white text-[10px]">2</span>
             Target Context
           </div>
-          <Card>
-            <CardContent className="p-4">
+          <Card className="bg-white/95 border-none shadow-2xl overflow-hidden transition-all hover:ring-2 hover:ring-accent/20">
+            <CardContent className="p-6">
               <Label htmlFor="jobDescription" className="sr-only">Job Description</Label>
               <textarea
                 id="jobDescription"
                 name="jobDescription"
-                placeholder="Paste the full job description or requirements here..."
+                placeholder="Paste the full job description or core requirements here..."
                 required
-                rows={10}
-                className="flex min-h-[200px] w-full bg-transparent p-0 text-sm focus-visible:outline-none resize-none placeholder:text-muted-foreground"
+                rows={12}
+                className="flex min-h-[250px] w-full bg-transparent p-0 text-sm text-slate-800 font-medium focus-visible:outline-none resize-none placeholder:text-slate-400 placeholder:font-normal leading-relaxed"
               />
             </CardContent>
           </Card>
@@ -191,30 +210,46 @@ export function TalentMindDashboard() {
         <SubmitButton />
       </div>
 
-      <div className="lg:sticky top-24 hidden lg:block">
-        <Card className="bg-primary/5 border-none shadow-none">
+      <div className="lg:sticky top-24 hidden lg:block space-y-6">
+        <Card className="bg-white/5 border-white/10 shadow-2xl backdrop-blur-xl">
           <CardHeader>
-            <CardTitle className="text-lg">Real-time Intelligence</CardTitle>
-            <CardDescription>Upload your profile to unlock career insights.</CardDescription>
+            <div className="flex items-center gap-3 mb-2">
+               <div className="p-2 rounded-lg bg-primary/20">
+                <Sparkles className="h-5 w-5 text-primary" />
+               </div>
+               <CardTitle className="text-xl text-white">AI Engine Status</CardTitle>
+            </div>
+            <CardDescription className="text-slate-300">Our orchestration layer uses parallel processing for sub-second analysis.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-2">
-              <div className="h-2 w-1/3 bg-primary/10 rounded" />
-              <div className="h-4 w-full bg-primary/10 rounded" />
-              <div className="h-4 w-5/6 bg-primary/10 rounded" />
-            </div>
-            <div className="space-y-2 pt-4">
-              <div className="h-2 w-1/2 bg-primary/10 rounded" />
-              <div className="h-4 w-full bg-primary/10 rounded" />
-              <div className="h-4 w-3/4 bg-primary/10 rounded" />
-            </div>
-            <div className="rounded-xl border border-primary/10 p-6 bg-background/50">
-              <div className="flex items-center gap-3 text-sm font-medium text-primary mb-2">
-                <Sparkles className="h-4 w-4" />
-                AI-Driven Optimization
+          <CardContent className="space-y-8">
+            <div className="space-y-3">
+              <div className="flex justify-between text-[10px] uppercase tracking-widest text-muted-foreground font-bold">
+                <span>Resume Extraction</span>
+                <span className="text-primary">Optimized</span>
               </div>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Our orchestration layer uses parallel processing to parse, analyze, and coach in seconds.
+              <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                <div className="h-full w-full bg-primary/50" />
+              </div>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="flex justify-between text-[10px] uppercase tracking-widest text-muted-foreground font-bold">
+                <span>Semantic Analysis</span>
+                <span className="text-accent">Ready</span>
+              </div>
+              <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                <div className="h-full w-5/6 bg-accent/50" />
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-white/5 p-6 bg-white/5 space-y-4">
+              <div className="flex items-center gap-3 text-sm font-bold text-white">
+                <FileText className="h-4 w-4 text-primary" />
+                Processing Detail
+              </div>
+              <p className="text-xs text-slate-400 leading-relaxed font-medium">
+                We utilize Gemini 2.5 Flash to identify technical skills, soft skills, and experience metrics simultaneously. 
+                Deterministic logic is then used to map these against job requirements with 100% precision.
               </p>
             </div>
           </CardContent>
