@@ -55,7 +55,11 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    background-image: radial-gradient(at 0% 0%, hsla(238, 52%, 38%, 0.05) 0, transparent 50%),
-                      radial-gradient(at 100% 100%, hsla(180, 100%, 25%, 0.05) 0, transparent 50%);
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(238, 52%, 38%, 0.1) 0, transparent 50%),
+      radial-gradient(at 100% 100%, hsla(180, 100%, 25%, 0.1) 0, transparent 50%),
+      linear-gradient(to bottom, transparent, hsl(var(--background))),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.826 10.558c1.026 0 1.858.832 1.858 1.858 0 1.026-.832 1.858-1.858 1.858-1.026 0-1.858-.832-1.858-1.858 0-1.026.832-1.858 1.858-1.858zM10.558 54.826c1.026 0 1.858.832 1.858 1.858 0 1.026-.832 1.858-1.858 1.858-1.026 0-1.858-.832-1.858-1.858 0-1.026.832-1.858 1.858-1.858z' fill='%239C92AC' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-attachment: fixed;
   }
 }
