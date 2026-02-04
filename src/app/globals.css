@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,9 +7,9 @@
   :root {
     --background: 210 20% 96%;
     --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
+    --card: 0 0% 100% / 0.8;
     --card-foreground: 222 47% 11%;
-    --popover: 0 0% 100%;
+    --popover: 0 0% 100% / 0.95;
     --popover-foreground: 222 47% 11%;
     --primary: 238 52% 38%;
     --primary-foreground: 210 40% 98%;
@@ -27,11 +28,11 @@
   }
 
   .dark {
-    --background: 222 47% 11%;
+    --background: 222 47% 6%;
     --foreground: 210 40% 98%;
-    --card: 222 47% 11%;
+    --card: 222 47% 11% / 0.7;
     --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
+    --popover: 222 47% 11% / 0.9;
     --popover-foreground: 210 40% 98%;
     --primary: 210 40% 98%;
     --primary-foreground: 222 47% 11.2%;
@@ -43,7 +44,7 @@
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
+    --border: 217.2 32.6% 17.5% / 0.5;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
@@ -54,12 +55,29 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased min-h-screen relative;
     background-image: 
-      radial-gradient(at 0% 0%, hsla(238, 52%, 38%, 0.1) 0, transparent 50%),
-      radial-gradient(at 100% 100%, hsla(180, 100%, 25%, 0.1) 0, transparent 50%),
-      linear-gradient(to bottom, transparent, hsl(var(--background))),
-      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.826 10.558c1.026 0 1.858.832 1.858 1.858 0 1.026-.832 1.858-1.858 1.858-1.026 0-1.858-.832-1.858-1.858 0-1.026.832-1.858 1.858-1.858zM10.558 54.826c1.026 0 1.858.832 1.858 1.858 0 1.026-.832 1.858-1.858 1.858-1.026 0-1.858-.832-1.858-1.858 0-1.026.832-1.858 1.858-1.858z' fill='%239C92AC' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.85), hsl(var(--background))),
+      url("https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?q=80&w=1974&auto=format&fit=crop");
+    background-size: cover;
+    background-position: center;
     background-attachment: fixed;
+    background-repeat: no-repeat;
   }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.826 10.558c1.026 0 1.858.832 1.858 1.858 0 1.026-.832 1.858-1.858 1.858-1.026 0-1.858-.832-1.858-1.858 0-1.026.832-1.858 1.858-1.858zM10.558 54.826c1.026 0 1.858.832 1.858 1.858 0 1.026-.832 1.858-1.858 1.858-1.026 0-1.858-.832-1.858-1.858 0-1.026.832-1.858 1.858-1.858z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.prose {
+  @apply max-w-none;
 }
