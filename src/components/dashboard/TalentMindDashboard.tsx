@@ -156,7 +156,7 @@ export function TalentMindDashboard() {
             <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-white text-[10px]">1</span>
             Source Document
           </div>
-          <Card className="relative overflow-hidden border-none bg-white/95 shadow-2xl transition-all hover:ring-2 hover:ring-primary/20">
+          <Card className="relative overflow-hidden border border-white/10 bg-white/10 backdrop-blur-xl shadow-2xl transition-all hover:ring-2 hover:ring-primary/20">
             <CardContent className="p-0">
               <Label htmlFor="resume" className="sr-only">Resume</Label>
               <Input
@@ -169,16 +169,16 @@ export function TalentMindDashboard() {
                 accept=".pdf"
                 ref={fileInputRef}
               />
-              <div className="flex flex-col items-center justify-center p-14 text-center group transition-colors hover:bg-slate-50">
-                  <div className="mb-5 rounded-2xl bg-primary/10 p-5 transition-transform group-hover:scale-110 duration-300">
-                    <FileUp className="w-10 h-10 text-primary"/>
+              <div className="flex flex-col items-center justify-center p-14 text-center group transition-colors hover:bg-white/5">
+                  <div className="mb-5 rounded-2xl bg-primary/20 p-5 transition-transform group-hover:scale-110 duration-300">
+                    <FileUp className="w-10 h-10 text-primary-foreground"/>
                   </div>
-                  <h4 className="font-bold text-slate-900 text-lg mb-2">
+                  <h4 className="font-bold text-white text-lg mb-2">
                       {resumeFileName ? resumeFileName : 'Upload professional resume'}
                   </h4>
-                  <p className="text-xs text-slate-500 font-medium">PDF format only. Standard resume layouts preferred.</p>
+                  <p className="text-xs text-white/60 font-medium">PDF format only. Standard resume layouts preferred.</p>
                   {resumeFileName && (
-                    <Badge variant="outline" className="mt-4 border-primary/30 text-primary bg-primary/5 px-3 py-1 animate-in zoom-in-50">
+                    <Badge variant="outline" className="mt-4 border-primary/30 text-white bg-primary/20 px-3 py-1 animate-in zoom-in-50">
                       <CheckCircle2 className="mr-1.5 h-3 w-3" /> File Selected
                     </Badge>
                   )}
@@ -192,7 +192,7 @@ export function TalentMindDashboard() {
             <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent text-white text-[10px]">2</span>
             Target Context
           </div>
-          <Card className="bg-white/95 border-none shadow-2xl overflow-hidden transition-all hover:ring-2 hover:ring-accent/20">
+          <Card className="bg-white/10 border border-white/10 shadow-2xl backdrop-blur-xl overflow-hidden transition-all hover:ring-2 hover:ring-accent/20">
             <CardContent className="p-6">
               <Label htmlFor="jobDescription" className="sr-only">Job Description</Label>
               <textarea
@@ -201,7 +201,7 @@ export function TalentMindDashboard() {
                 placeholder="Paste the full job description or core requirements here..."
                 required
                 rows={12}
-                className="flex min-h-[250px] w-full bg-transparent p-0 text-sm text-slate-800 font-medium focus-visible:outline-none resize-none placeholder:text-slate-400 placeholder:font-normal leading-relaxed"
+                className="flex min-h-[250px] w-full bg-transparent p-0 text-sm text-white font-medium focus-visible:outline-none resize-none placeholder:text-white/40 placeholder:font-normal leading-relaxed"
               />
             </CardContent>
           </Card>
