@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -56,8 +57,8 @@
   body {
     @apply bg-background text-foreground antialiased min-h-screen relative;
     background-image: 
-      linear-gradient(to bottom, rgba(15, 23, 42, 0.9), hsl(var(--background))),
-      url("https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2000&auto=format&fit=crop");
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.85), hsl(var(--background))),
+      url("https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2000&auto=format&fit=crop");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -71,7 +72,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.826 10.558c1.026 0 1.858.832 1.858 1.858 0 1.026-.832 1.858-1.858 1.858-1.026 0-1.858-.832-1.858-1.858 0-1.026.832-1.858 1.858-1.858zM10.558 54.826c1.026 0 1.858.832 1.858 1.858 0 1.026-.832 1.858-1.858 1.858-1.026 0-1.858-.832-1.858-1.858 0-1.026.832-1.858 1.858-1.858z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.826 10.558c1.026 0 1.858.832 1.858 1.858 0 1.026-.832 1.858-1.858 1.858-1.026 0-1.858-.832-1.858-1.858 0-1.026.832-1.858 1.858-1.858zM10.558 54.826c1.026 0 1.858.832 1.858 1.858 0 1.026-.832 1.858-1.858 1.858-1.026 0-1.858-.832-1.858-1.858 0-1.026.832-1.858 1.858-1.858z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 0;
   }
