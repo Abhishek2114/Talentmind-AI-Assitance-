@@ -7,9 +7,9 @@
 <div align="center">
 
 [![Live Demo](https://img.shields.io/badge/LIVE_DEMO-Access_Now-00f2ff?style=for-the-badge&logo=vercel)](https://talentmind-ai.web.app)
+[![GitHub Repo](https://img.shields.io/badge/REPO-Source_Code-white?style=for-the-badge&logo=github)](https://github.com/Abhishek2114/Talentmind-AI-Assistance-)
 [![Architecture: Genkit](https://img.shields.io/badge/Architecture-Genkit_1.x-orange?style=for-the-badge&logo=firebase)](https://firebase.google.com/docs/genkit)
 [![Model: Gemini 2.5 Flash](https://img.shields.io/badge/Model-Gemini_2.5_Flash-blue?style=for-the-badge&logo=google-gemini)](https://ai.google.dev/)
-[![Status: Production Ready](https://img.shields.io/badge/Status-Production_Ready-green?style=for-the-badge)]()
 
 **TalentMind AI** is a professional-grade career co-pilot that replaces traditional guesswork with actionable, recruiter-grade intelligence. Built for the modern talent market, it bridges the gap between candidate experience and industry requirements with surgical precision.
 
@@ -65,7 +65,7 @@ TalentMind AI (Strategic Architecture)
 
 1. **Clone the Weapon:**
    ```bash
-   git clone https://github.com/Abhishek2114/Talentmind-Al-Assitance-.git
+   git clone https://github.com/Abhishek2114/Talentmind-AI-Assistance-.git
    ```
 2. **Configure Intelligence:**
    Add `GEMINI_API_KEY` to your `.env` file.
