@@ -4,7 +4,7 @@ import type { AnalysisResult, JobRecommendation } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { Lightbulb, Briefcase, FileText, ArrowRight, CheckCircle2, XCircle, ExternalLink } from 'lucide-react';
+import { Lightbulb, Briefcase, FileText, ArrowRight, CheckCircle2, XCircle, ExternalLink, Sparkles } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Separator } from '../ui/separator';
 
@@ -13,7 +13,6 @@ interface AnalysisResultsProps {
 }
 
 export function AnalysisResults({ result }: AnalysisResultsProps) {
-  const resumeSkillsLower = new Set(result.resumeInfo.skills.map(s => s.toLowerCase()));
   const jobSkillsLower = new Set(result.jobInfo.requiredSkills.map(s => s.toLowerCase()));
   
   const matchingSkills = result.resumeInfo.skills.filter(skill => jobSkillsLower.has(skill.toLowerCase()));
@@ -33,8 +32,7 @@ export function AnalysisResults({ result }: AnalysisResultsProps) {
       </TabsList>
       
       <TabsContent value="skill-gap" className="mt-6">
-        <Card className="border-none shadow-none bg-transparent p-0">
-          <CardContent className="p-0 space-y-8">
+        <div className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card className="bg-background">
                 <CardHeader className="pb-3">
@@ -97,8 +95,7 @@ export function AnalysisResults({ result }: AnalysisResultsProps) {
                 </div>
               </CardContent>
             </Card>
-          </CardContent>
-        </Card>
+        </div>
       </TabsContent>
       
       <TabsContent value="feedback" className="mt-6">
@@ -147,5 +144,3 @@ export function AnalysisResults({ result }: AnalysisResultsProps) {
     </Tabs>
   );
 }
-
-import { Sparkles } from 'lucide-react';
