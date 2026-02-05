@@ -1,5 +1,9 @@
 # 🚀 TalentMind AI: Strategic Career Intelligence Platform
 
+[![Live Demo](https://img.shields.sourcegraph.com/badge/Live-Demo-blueviolet?style=for-the-badge&logo=vercel)](https://talentmind-ai.web.app)
+[![Architecture: Genkit](https://img.shields.io/badge/Architecture-Genkit-orange?style=for-the-badge)](https://firebase.google.com/docs/genkit)
+[![Model: Gemini 2.5](https://img.shields.io/badge/Model-Gemini%202.5%20Flash-blue?style=for-the-badge)](https://ai.google.dev/)
+
 **TalentMind AI** is a professional-grade career co-pilot that leverages Generative AI and deterministic logic to bridge the gap between candidate experience and industry-specific job requirements. Designed for the modern talent market, it replaces traditional guesswork with actionable, recruiter-grade intelligence.
 
 ---
