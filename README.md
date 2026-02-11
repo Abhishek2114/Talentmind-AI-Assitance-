@@ -67,7 +67,7 @@ Deploying TalentMind AI to Vercel is seamless. Follow these steps to get your ow
 1.  **Click the Deploy Button:** Use the "Deploy with Vercel" button at the top of this README.
 2.  **Environment Variables:** During the deployment setup, Vercel will ask for environment variables. You **must** provide:
     *   `GEMINI_API_KEY`: Your Google AI Studio API key (get it from [aistudio.google.com](https://aistudio.google.com/)).
-3.  **Build Settings:** Vercel will automatically detect Next.js settings. No manual configuration is needed.
+3.  **Build Settings:** Vercel will automatically detect Next.js settings. The included `vercel.json` ensures serverless functions have sufficient timeout for AI processing.
 4.  **Launch:** Once the build completes, your career intelligence platform is live!
 
 ---

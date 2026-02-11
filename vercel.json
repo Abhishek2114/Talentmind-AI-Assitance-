@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "framework": "nextjs",
+  "functions": {
+    "src/app/actions.ts": {
+      "maxDuration": 60
+    },
+    "src/ai/flows/*.ts": {
+      "maxDuration": 60
+    }
+  }
+}
