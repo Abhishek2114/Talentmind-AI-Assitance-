@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[![Live Demo](https://img.shields.io/badge/LIVE_DEMO-Access_Now-00f2ff?style=for-the-badge&logo=vercel)](https://talentmind-ai.web.app)
+[![Live Demo](https://img.shields.io/badge/LIVE_DEMO-Access_Now-00f2ff?style=for-the-badge&logo=vercel)](https://talent-mind-ai.vercel.app)
 [![GitHub Repo](https://img.shields.io/badge/REPO-Source_Code-white?style=for-the-badge&logo=github)](https://github.com/Abhishek2114/Talentmind-AI-Assistance-)
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAbhishek2114%2FTalentmind-AI-Assistance-&env=GEMINI_API_KEY&project-name=talentmind-ai&repository-name=talentmind-ai)
 
@@ -50,25 +50,16 @@ TalentMind AI (Strategic Architecture)
 
 ---
 
-## 🛠️ Tech Stack & Engineering
-
-- **Framework:** Next.js 14 (App Router / Server Components)
-- **AI Orchestration:** [Firebase Genkit](https://firebase.google.com/docs/genkit)
-- **Primary Model:** Gemini 2.5 Flash
-- **Styling:** Tailwind CSS & ShadCN UI (Custom Glassmorphism Overlays)
-- **State Management:** React Server Actions (Consolidated Payload Management)
-
----
-
 ## 🚀 Deployment Guide (Vercel)
 
 Deploying TalentMind AI to Vercel is seamless. Follow these steps to get your own instance running in minutes:
 
-1.  **Click the Deploy Button:** Use the "Deploy with Vercel" button at the top of this README.
-2.  **Environment Variables:** During the deployment setup, Vercel will ask for environment variables. You **must** provide:
-    *   `GEMINI_API_KEY`: Your Google AI Studio API key (get it from [aistudio.google.com](https://aistudio.google.com/)).
-3.  **Build Settings:** Vercel will automatically detect Next.js settings. The included `vercel.json` ensures serverless functions have sufficient timeout for AI processing.
-4.  **Launch:** Once the build completes, your career intelligence platform is live!
+1.  **Connect to GitHub:** Link your repository in the Vercel dashboard.
+2.  **Environment Variables:** In the "Environment Variables" section of the Vercel setup, you **must** add:
+    *   **Key:** `GEMINI_API_KEY`
+    *   **Value:** Your Google AI Studio API key (get it from [aistudio.google.com](https://aistudio.google.com/)).
+3.  **Build Settings:** Vercel automatically detects Next.js settings. The included `vercel.json` ensures serverless functions have a **60s timeout** for deep AI processing.
+4.  **Launch:** Click "Deploy." Your career intelligence platform is live!
 
 ---
 
