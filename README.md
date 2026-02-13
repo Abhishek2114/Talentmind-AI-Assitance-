@@ -8,8 +8,8 @@
 <div align="center">
 
 [![Live Demo](https://img.shields.io/badge/LIVE_DEMO-Access_Now-00f2ff?style=for-the-badge&logo=vercel)](https://talentmind-ai.vercel.app)
-[![GitHub Repo](https://img.shields.io/badge/REPO-Source_Code-white?style=for-the-badge&logo=github)](https://github.com/Abhishek2114/Talentmind-AI-Assistance-)
-[![Vercel Deploy](https://img.shields.io/badge/DEPLOY-One_Click-black?style=for-the-badge&logo=vercel)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAbhishek2114%2FTalentmind-AI-Assistance-&env=GEMINI_API_KEY)
+[![GitHub Repo](https://img.shields.io/badge/REPO-Source_Code-white?style=for-the-badge&logo=github)](https://github.com/Abhishek2114/TalentMind-Ai)
+[![Vercel Deploy](https://img.shields.io/badge/DEPLOY-One_Click-black?style=for-the-badge&logo=vercel)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAbhishek2114%2FTalentMind-Ai&env=GEMINI_API_KEY)
 
 **TalentMind AI** is a professional-grade career co-pilot designed to replace traditional guesswork with actionable, recruiter-grade intelligence. Built for the modern, hyper-competitive talent market, it bridges the gap between candidate experience and industry requirements with surgical precision.
 
@@ -19,14 +19,14 @@
 
 ## 🏗️ System Architecture: The Intelligence Layer
 
-The platform utilizes a high-performance, serverless architecture designed for low latency and high data integrity. It leverages **Firebase Genkit** for production-grade AI orchestration.
+The platform utilizes a high-performance, serverless architecture designed for low latency and high data integrity. It leverages **Firebase Genkit v1.x** for production-grade AI orchestration.
 
 ### Technical Stack
 - **Engine:** Google Gemini 2.0 Flash (Multi-Modal Vision)
 - **Orchestration:** Firebase Genkit v1.x (Stable)
 - **Framework:** Next.js 15 (App Router)
 - **UI Architecture:** Glassmorphic Cyber-Tech (Tailwind + ShadCN)
-- **Deployment:** Vercel / Firebase Edge
+- **Deployment:** Vercel
 
 ```text
 TalentMind AI (Strategic Orchestration)
@@ -55,31 +55,22 @@ TalentMind AI (Strategic Orchestration)
 
 ---
 
-## 🛡️ Engineering & Reliability
-
-- **Consolidated Flow Orchestration:** Minimizes API latency by bundling parsing, analysis, and job discovery into a single atomic operation.
-- **Modern React Stack:** Built on **React 19** utilizing Server Actions and advanced state management for zero-latency UI updates.
-- **Robust Dependency Management:** Aligned with Genkit 1.x stable versions with strict peer-dependency resolution.
-- **Type Safety:** 100% TypeScript coverage with strict Zod validation for all AI outputs.
-
----
-
 ## 🚀 Deployment Guide (Vercel)
 
 Deploying TalentMind AI to Vercel is seamless:
 
-1.  **Connect to GitHub:** Link your repository in the Vercel dashboard.
+1.  **Connect to GitHub:** Link your repository (`Abhishek2114/TalentMind-Ai`) in the Vercel dashboard.
 2.  **Environment Variables:** Add `GEMINI_API_KEY` from [Google AI Studio](https://aistudio.google.com/).
 3.  **Build Settings:** Vercel automatically detects Next.js 15 settings. The included `vercel.json` ensures serverless functions have a **60s timeout** for deep AI processing.
 4.  **Launch:** Click "Deploy." Your weapon is ready.
 
 ---
 
-## 📈 Strategic Roadmap
+## 🛡️ Engineering & Reliability
 
-- [ ] **Interview Simulator:** Real-time audio mock interviews via Gemini TTS.
-- [ ] **Cover Letter Synthesis:** Auto-drafting based on identified skill gaps.
-- [ ] **Multi-Language Support:** Global job market localization.
+- **Consolidated Flow Orchestration:** Minimizes API latency by bundling parsing, analysis, and job discovery into a single atomic operation.
+- **Modern React Stack:** Built on **Next.js 15** and **React 19** utilizing Server Actions and the `useActionState` hook for zero-latency UI updates.
+- **Robust Dependency Management:** Aligned with Genkit 1.x stable versions with strict peer-dependency resolution.
 
 ---
 *Engineered for recruiters and candidates who demand precision. Built with high-performance AI primitives.*
