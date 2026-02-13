@@ -1,4 +1,5 @@
-# 🚀 TalentMind AI: Strategic Career Intelligence Platform
+
+# ⚔️ TalentMind AI: The Strategic Career Intelligence Weapon
 
 <p align="center">
   <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop" alt="TalentMind AI Header" width="100%" style="border-radius: 15px; border: 1px solid #30363d;">
@@ -6,11 +7,11 @@
 
 <div align="center">
 
-[![Live Demo](https://img.shields.io/badge/LIVE_DEMO-Access_Now-00f2ff?style=for-the-badge&logo=vercel)](https://talent-mind-ai.vercel.app)
+[![Live Demo](https://img.shields.io/badge/LIVE_DEMO-Access_Now-00f2ff?style=for-the-badge&logo=vercel)](https://talentmind-ai.vercel.app)
 [![GitHub Repo](https://img.shields.io/badge/REPO-Source_Code-white?style=for-the-badge&logo=github)](https://github.com/Abhishek2114/Talentmind-AI-Assistance-)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAbhishek2114%2FTalentmind-AI-Assistance-&env=GEMINI_API_KEY&project-name=talentmind-ai&repository-name=talentmind-ai)
+[![Vercel Deploy](https://img.shields.io/badge/DEPLOY-One_Click-black?style=for-the-badge&logo=vercel)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAbhishek2114%2FTalentmind-AI-Assistance-&env=GEMINI_API_KEY)
 
-**TalentMind AI** is a professional-grade career co-pilot that replaces traditional guesswork with actionable, recruiter-grade intelligence. Built for the modern talent market, it bridges the gap between candidate experience and industry requirements with surgical precision.
+**TalentMind AI** is a professional-grade career co-pilot designed to replace traditional guesswork with actionable, recruiter-grade intelligence. Built for the modern, hyper-competitive talent market, it bridges the gap between candidate experience and industry requirements with surgical precision.
 
 </div>
 
@@ -18,48 +19,59 @@
 
 ## 🏗️ System Architecture: The Intelligence Layer
 
-The platform utilizes a high-performance, serverless architecture designed for low latency and high data integrity. It leverages **Firebase Genkit** for production-grade AI orchestration, moving beyond simple LLM wrappers.
+The platform utilizes a high-performance, serverless architecture designed for low latency and high data integrity. It leverages **Firebase Genkit** for production-grade AI orchestration.
+
+### Technical Stack
+- **Engine:** Google Gemini 2.0 Flash (Multi-Modal Vision)
+- **Orchestration:** Firebase Genkit v1.x (Stable)
+- **Framework:** Next.js 15 (App Router)
+- **UI Architecture:** Glassmorphic Cyber-Tech (Tailwind + ShadCN)
+- **Deployment:** Vercel / Firebase Edge
 
 ```text
-TalentMind AI (Strategic Architecture)
+TalentMind AI (Strategic Orchestration)
 │
-├── Client Layer (Next.js 14 App Router)
-│   ├── UI: Glassmorphism / Cyber-Tech Aesthetic
-│   └── Interaction: Single-Request Orchestration
+├── Client Layer (Next.js 15 / React 19)
+│   ├── UI: Transparent Glassmorphism Aesthetic
+│   └── Interaction: Single-Request Atomic Orchestration
 │
-├── Orchestration Engine (Firebase Genkit)
-│   ├── parseResume (PDF -> Vision-based Structured Zod Schema)
+├── Intelligence Layer (Genkit)
+│   ├── parseResume (PDF -> Vision-based Structured Schema)
 │   ├── analyzeJD (Requirement & Skill Extraction)
 │   └── matchLogic (Deterministic Case-Insensitive Mapping)
 │
-├── Intelligence Layer
-│   └── Model: Google Gemini 2.5 Flash (Multi-Modal)
-│
 └── Infrastructure
-    └── Hosting: Vercel / Firebase App Hosting
+    └── Timeout Protocol: 60s Serverless Execution Window (vercel.json)
 ```
 
 ---
 
-## ⚔️ Key Weapons (Core Features)
+## ⚔️ Weapon Specifications (Core Features)
 
 - **Vision-Based Resume Parsing:** Uses Gemini's multi-modal capabilities to "see" and parse unstructured PDF data, preserving layout context that traditional text-extractors lose.
 - **Deterministic Skill Matrix:** 0% hallucination rate on critical data. We use set-logic intersection to map extracted profile skills against extracted JD requirements.
-- **Strategic Resume Feedback:** Actionable coaching generated via contextual analysis, focusing on high-impact metrics and phrasing.
-- **Automated Job Discovery:** Real-world opportunity sourcing based on the identified candidate profile.
+- **Strategic Resume Coaching:** Actionable, context-aware feedback generated via deep analysis of job requirements versus candidate history.
+- **Automated Opportunity Discovery:** Real-world job sourcing from major platforms (LinkedIn, Indeed, etc.) based on identified candidate profile.
+
+---
+
+## 🛡️ Engineering & Reliability
+
+- **Consolidated Flow Orchestration:** Minimizes API latency by bundling parsing, analysis, and job discovery into a single atomic operation.
+- **Modern React Stack:** Built on **React 19** utilizing Server Actions and advanced state management for zero-latency UI updates.
+- **Robust Dependency Management:** Aligned with Genkit 1.x stable versions with strict peer-dependency resolution.
+- **Type Safety:** 100% TypeScript coverage with strict Zod validation for all AI outputs.
 
 ---
 
 ## 🚀 Deployment Guide (Vercel)
 
-Deploying TalentMind AI to Vercel is seamless. Follow these steps to get your own instance running in minutes:
+Deploying TalentMind AI to Vercel is seamless:
 
 1.  **Connect to GitHub:** Link your repository in the Vercel dashboard.
-2.  **Environment Variables:** In the "Environment Variables" section of the Vercel setup, you **must** add:
-    *   **Key:** `GEMINI_API_KEY`
-    *   **Value:** Your Google AI Studio API key (get it from [aistudio.google.com](https://aistudio.google.com/)).
-3.  **Build Settings:** Vercel automatically detects Next.js settings. The included `vercel.json` ensures serverless functions have a **60s timeout** for deep AI processing.
-4.  **Launch:** Click "Deploy." Your career intelligence platform is live!
+2.  **Environment Variables:** Add `GEMINI_API_KEY` from [Google AI Studio](https://aistudio.google.com/).
+3.  **Build Settings:** Vercel automatically detects Next.js 15 settings. The included `vercel.json` ensures serverless functions have a **60s timeout** for deep AI processing.
+4.  **Launch:** Click "Deploy." Your weapon is ready.
 
 ---
 
